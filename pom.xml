@@ -6,7 +6,7 @@
     <groupId>com.github.rzcastilho</groupId>
     <artifactId>azure-search-client</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>azure-search-client</name>
 
     <scm>
