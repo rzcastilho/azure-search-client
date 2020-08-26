@@ -39,7 +39,7 @@ public class Client {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Object> listDocuments = Arrays.stream(documents)
                 .map(document -> {
-                    Map<String, Object> map = objectMapper.convertValue(document, new TypeReference<>() {});
+                    Map<String, Object> map = objectMapper.convertValue(document, new TypeReference<Map<String, Object>>() {});
                     map.put(Constants.SEARCH_ACTION, operation.name());
                     return map;
                 })
