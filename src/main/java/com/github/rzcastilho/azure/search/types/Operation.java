@@ -1,4 +1,4 @@
-package github.com.rzcastilho.azure.search.types;
+package com.github.rzcastilho.azure.search.types;
 
 public enum Operation {
 

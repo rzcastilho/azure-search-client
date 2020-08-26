@@ -1,4 +1,4 @@
-package github.com.rzcastilho.azure.search;
+package com.github.rzcastilho.azure.search;
 
 public class UrlHelper {
 

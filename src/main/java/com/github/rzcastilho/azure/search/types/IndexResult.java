@@ -1,5 +1,4 @@
-package github.com.rzcastilho.azure.search.types;
-
+package com.github.rzcastilho.azure.search.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -7,15 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IndexOperation {
+public class IndexResult {
 
-    private List<Object> value;
+    private String key;
+    private Boolean status;
+    private String errorMessage;
+    private Integer statusCode;
 
 }
