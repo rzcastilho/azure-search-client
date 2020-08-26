@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/rzcastilho/azure-search-client.svg)](https://jitpack.io/#rzcastilho/azure-search-client)
+
 # Azure Search Client
 
 It's just a tiny, simple client for Azure Search.
@@ -6,7 +8,7 @@ It's just a tiny, simple client for Azure Search.
 ```groovy
     allprojects {
         repositories {
-			maven { url 'https://jitpack.io' }
+            maven { url 'https://jitpack.io' }
         }
     }
 
