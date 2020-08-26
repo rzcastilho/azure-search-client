@@ -3,10 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>github.com.rzcastilho</groupId>
+    <groupId>com.github.rzcastilho</groupId>
     <artifactId>azure-search-client</artifactId>
-    <version>0.0.1</version>
+    <packaging>jar</packaging>
+    <version>0.0.2</version>
+    <name>azure-search-client</name>
+
+    <scm>
+        <url>https://github.com/rzcastilho/azure-search-client</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

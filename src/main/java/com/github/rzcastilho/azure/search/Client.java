@@ -1,19 +1,17 @@
-package github.com.rzcastilho.azure.search;
+package com.github.rzcastilho.azure.search;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import github.com.rzcastilho.azure.search.types.IndexOperation;
-import github.com.rzcastilho.azure.search.types.Operation;
-import github.com.rzcastilho.azure.search.types.OperationResult;
+import com.github.rzcastilho.azure.search.types.IndexOperation;
+import com.github.rzcastilho.azure.search.types.Operation;
+import com.github.rzcastilho.azure.search.types.OperationResult;
 import kong.unirest.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static github.com.rzcastilho.azure.search.Constants.*;
-import static github.com.rzcastilho.azure.search.UrlHelper.*;
 import static java.util.jar.Attributes.Name.CONTENT_TYPE;
 import static kong.unirest.ContentType.APPLICATION_JSON;
 
@@ -24,14 +22,14 @@ public class Client {
     public Client(String hostname, String apiKey, String apiVersion) {
         this.apiVersion = apiVersion;
         Unirest.config()
-                .defaultBaseUrl(getBaseUrl(hostname))
-                .addDefaultHeader(API_KEY, apiKey);
+                .defaultBaseUrl(UrlHelper.getBaseUrl(hostname))
+                .addDefaultHeader(Constants.API_KEY, apiKey);
     }
 
     public <T> T search(String index, TypeReference<T> type) throws JsonProcessingException {
-        String jsonPacket = Unirest.get(getUrlSearch(index))
-                .queryString(API_VERSION, apiVersion)
-                .queryString(SEARCH, "*")
+        String jsonPacket = Unirest.get(UrlHelper.getUrlSearch(index))
+                .queryString(Constants.API_VERSION, apiVersion)
+                .queryString(Constants.SEARCH, "*")
                 .asString()
                 .getBody();
         return new ObjectMapper().readValue(jsonPacket, type);
@@ -42,14 +40,14 @@ public class Client {
         List<Object> listDocuments = Arrays.stream(documents)
                 .map(document -> {
                     Map<String, Object> map = objectMapper.convertValue(document, new TypeReference<>() {});
-                    map.put(SEARCH_ACTION, operation.name());
+                    map.put(Constants.SEARCH_ACTION, operation.name());
                     return map;
                 })
                 .collect(Collectors.toList());
         IndexOperation indexOperation = IndexOperation.builder().build();
         indexOperation.setValue(listDocuments);
-        return Unirest.post(getUrlIndex(indexName))
-                .queryString(API_VERSION, apiVersion)
+        return Unirest.post(UrlHelper.getUrlIndex(indexName))
+                .queryString(Constants.API_VERSION, apiVersion)
                 .header(CONTENT_TYPE.toString(), APPLICATION_JSON.getMimeType())
                 .body(indexOperation)
                 .asObject(OperationResult.class)

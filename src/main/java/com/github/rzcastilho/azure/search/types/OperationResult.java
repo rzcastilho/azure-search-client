@@ -1,4 +1,4 @@
-package github.com.rzcastilho.azure.search.types;
+package com.github.rzcastilho.azure.search.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import static github.com.rzcastilho.azure.search.Constants.ODATA_CONTEXT;
+import static com.github.rzcastilho.azure.search.Constants.ODATA_CONTEXT;
 
 @Builder
 @Data
