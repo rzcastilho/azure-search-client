@@ -6,7 +6,7 @@
     <groupId>com.github.rzcastilho</groupId>
     <artifactId>azure-search-client</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <name>azure-search-client</name>
 
     <scm>
@@ -29,6 +29,11 @@
             <groupId>com.konghq</groupId>
             <artifactId>unirest-objectmapper-jackson</artifactId>
             <version>3.7.04</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

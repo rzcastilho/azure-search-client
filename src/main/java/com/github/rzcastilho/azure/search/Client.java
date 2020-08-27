@@ -7,7 +7,10 @@ import com.github.rzcastilho.azure.search.types.IndexOperation;
 import com.github.rzcastilho.azure.search.types.Operation;
 import com.github.rzcastilho.azure.search.types.OperationResult;
 import kong.unirest.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,6 +18,7 @@ import java.util.stream.Collectors;
 import static java.util.jar.Attributes.Name.CONTENT_TYPE;
 import static kong.unirest.ContentType.APPLICATION_JSON;
 
+@Slf4j
 public class Client {
 
     private final String apiVersion;
@@ -23,7 +27,8 @@ public class Client {
         this.apiVersion = apiVersion;
         Unirest.config()
                 .defaultBaseUrl(UrlHelper.getBaseUrl(hostname))
-                .addDefaultHeader(Constants.API_KEY, apiKey);
+                .addDefaultHeader(Constants.API_KEY, apiKey)
+                .interceptor(new LogInterceptor());
     }
 
     public <T> T search(String index, TypeReference<T> type) throws JsonProcessingException {
@@ -40,7 +45,7 @@ public class Client {
         List<Object> listDocuments = Arrays.stream(documents)
                 .map(document -> {
                     Map<String, Object> map = objectMapper.convertValue(document, new TypeReference<Map<String, Object>>() {});
-                    map.put(Constants.SEARCH_ACTION, operation.name());
+                    map.put(Constants.SEARCH_ACTION, operation.getOperationName());
                     return map;
                 })
                 .collect(Collectors.toList());

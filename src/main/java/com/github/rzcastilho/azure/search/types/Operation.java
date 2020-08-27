@@ -2,17 +2,19 @@ package com.github.rzcastilho.azure.search.types;
 
 public enum Operation {
 
-    UPLOAD("upload", 0),
-    DELETE("delete", 1),
-    MERGE("merge", 2),
-    MERGE_OR_UPLOAD("mergeOrUpload", 3);
+    UPLOAD("upload"),
+    DELETE("delete"),
+    MERGE("merge"),
+    MERGE_OR_UPLOAD("mergeOrUpload");
 
-    Operation(String name, int value) {
-        this.name = name;
-        this.value = value;
+    Operation(String operationName) {
+        this.operationName = operationName;
     }
 
-    String name;
-    int value;
+    public String getOperationName() {
+        return operationName;
+    }
+
+    String operationName;
 
 }
