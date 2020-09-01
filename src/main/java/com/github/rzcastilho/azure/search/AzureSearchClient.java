@@ -3,16 +3,12 @@ package com.github.rzcastilho.azure.search;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.rzcastilho.azure.search.types.Candidato;
 import com.github.rzcastilho.azure.search.types.IndexOperation;
 import com.github.rzcastilho.azure.search.types.Operation;
 import com.github.rzcastilho.azure.search.types.OperationResult;
 import kong.unirest.Unirest;
 import lombok.extern.slf4j.Slf4j;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -74,37 +70,6 @@ public class AzureSearchClient {
 
     public OperationResult index(Object... documents) {
         return index(Operation.UPLOAD, documents);
-    }
-
-    public static void main(String[] args) {
-        Candidato candidato = Candidato
-                .builder()
-                .id("0-InscricaoId")
-                .dtInscricao(Date.from(LocalDateTime.of(2020, 9, 1, 11, 50, 30).atZone(ZoneId.systemDefault()).toInstant()))
-                .idConsultor("99")
-                .nome("John Doe")
-                .cpf("329.517.430-09")
-                .rg("20200200x")
-                .dtNascimento(Date.from(LocalDateTime.of(2001, 1, 1, 0, 0, 0).atZone(ZoneId.systemDefault()).toInstant()))
-                .logradouro("Rua dos Bobos")
-                .numero("0")
-                .bairro("Vinicius de Moraes")
-                .cidade("São Paulo")
-                .complemento("Casa 1")
-                .cep("00000-000")
-                .uf("SP")
-                .idCurso("607060")
-                .curso("Engenharia Civil - Bacharelado")
-                .periodoCaptacao("20202")
-                .modalidade("Presencial")
-                .turno("Noite")
-                .marca("ANHANGUERA")
-                .dtProva(Date.from(LocalDateTime.of(2020, 9, 5, 8, 0, 0).atZone(ZoneId.systemDefault()).toInstant()))
-                .idUnidadeOrigem("712")
-                .sistema("OLIMPO")
-                .build();
-        AzureSearchClient client = new AzureSearchClient("portalk-dev.search.windows.net", "17766ED6D49968B924A68AA7D8815D86", "2020-06-30");
-        client.index(candidato);
     }
 
 }
