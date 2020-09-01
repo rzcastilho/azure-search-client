@@ -14,13 +14,13 @@ public class LogInterceptor implements Interceptor {
     @SneakyThrows
     @Override
     public void onRequest(HttpRequest<?> request, Config config) {
-        log.debug("---> Azure Search REST API [REQUEST]: {}", mapper.writeValueAsString(request));
+        log.debug("---> Azure Search API [REQUEST]: {}", mapper.writeValueAsString(request));
     }
 
     @SneakyThrows
     @Override
     public void onResponse(HttpResponse<?> response, HttpRequestSummary request, Config config) {
-        log.debug("<--- Azure Search REST API [RESPONSE]: {}", mapper.writeValueAsString(response));
+        log.debug("<--- Azure Search API [RESPONSE]: {}", mapper.writeValueAsString(response));
     }
 
 }
